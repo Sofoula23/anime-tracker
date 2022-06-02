@@ -57,9 +57,32 @@ onMounted(() => {
 </script>
 
 <template>
+       <main>
+          <h1>The Anime Tracker</h1>
+
+          <form @submit.prevent="searchAnime">
+              <input 
+               type="text" 
+               placeholder="Search for an anime..."
+               v-model="query" 
+               @input="handleInput"
+              />
+
+              <button type="submit">Search</button>
+          </form>
+
+          <div class="results" v-if="search_results.length > 0">
+              <div class="result" v-for="anime in search_results">
+              <img :src="anime.images.jpg.image_url" />
+              <div class="details">
+                <h3>{{ anime.title }}</h3>
+              </div>
+              </div>
+          </div>
+     </main>
 
 </template>
-     <main>Hello, World!</main>
+  
 <style>
 
 </style>
